@@ -38,6 +38,8 @@ class LLMHandler:
         if not self.config.is_gemini_configured:
             raise ValueError("Gemini API key not configured")
 
+        # Configure Gemini with API key
+        genai.configure(api_key=self.config.get_gemini_api_key())
         model = genai.GenerativeModel('gemini-2.5-pro-exp-03-25')
         prompt = f"""You are Dr. Green, an expert plant pathologist. Please provide your response in {language} language.
 
@@ -61,6 +63,9 @@ Please be specific and professional in your analysis. Ensure all medical and tec
         if not self.config.is_openai_configured:
             raise ValueError("OpenAI API key not configured")
 
+        # Configure OpenAI with API key
+        client = openai.OpenAI(api_key=self.config.get_openai_api_key())
+        
         # Convert PIL Image to bytes
         img_byte_arr = io.BytesIO()
         image.save(img_byte_arr, format='PNG')
@@ -69,7 +74,6 @@ Please be specific and professional in your analysis. Ensure all medical and tec
         # Convert bytes to base64
         base64_image = base64.b64encode(img_byte_arr).decode('utf-8')
 
-        client = openai.OpenAI()  # Initialize the client
         response = client.chat.completions.create(
             model="gpt-4o-2024-11-20",
             messages=[

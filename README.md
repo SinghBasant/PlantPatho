@@ -99,5 +99,37 @@ For any queries or support, please contact:
 - Basant Singh
 - Rajiv Kumar
 
+## Deployment to Streamlit Cloud 🚀
+
+1. **Create a Streamlit Cloud Account**
+   - Sign up at [Streamlit Cloud](https://streamlit.io/cloud)
+   - Connect your GitHub account
+
+2. **Deploy Your App**
+   - Click "New app" in your Streamlit Cloud dashboard
+   - Select your GitHub repository
+   - Choose the main branch
+   - Set the main file path to `app.py`
+   - Click "Deploy"
+
+3. **Configure Secrets**
+   - In your app's settings, go to "Secrets"
+   - Add your API keys:
+   ```toml
+   [secrets]
+   GEMINI_API_KEY = "your-gemini-api-key"
+   OPENAI_API_KEY = "your-openai-api-key"
+   ```
+
+4. **Access Your App**
+   - Your app will be available at `https://yourusername-dr-green.streamlit.app`
+   - Share this URL with users who have the access code
+
+## Local Development vs Cloud Deployment 🔄
+
+- **Local Development**: Uses `.env` file for API keys
+- **Cloud Deployment**: Uses Streamlit Secrets for API keys
+- The app automatically detects the environment and uses the appropriate configuration
+
 ---
 Made with 💚 in Hyderabad, India 
